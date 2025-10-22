@@ -4,7 +4,6 @@ import com.potik.Enums.Status;
 import com.potik.Interfaces.IExecutable;
 import com.potik.Interfaces.IWorkflowElement;
 
-//TODO: Add other more complex elements like: sequence, logical statement
 public class WorkflowNode implements IWorkflowElement
 {
     private Status status = Status.INIT;
