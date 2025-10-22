@@ -4,6 +4,9 @@ import com.potik.Interfaces.IExecutable;
 import com.potik.Singletons.FileLogger;
 import com.potik.Tasks.ConsoleLogTask;
 import com.potik.Tasks.FileLogTask;
+import com.potik.Tasks.Mock.MockFailureTask;
+import com.potik.Tasks.Mock.MockSuccessTask;
+import com.potik.Tasks.Mock.MockTask;
 import com.potik.Workflow.WorkflowInstance;
 import com.potik.Workflow.WorkflowManager;
 import com.potik.Workflow.WorkflowNode;
@@ -19,7 +22,8 @@ public class Main
         FileLogger logger = new FileLogger();
 
         //Create nodes and tasks for them
-        WorkflowNode node3 = new WorkflowNode(new ConsoleLogTask("Hello Workflow!"));
+        //WorkflowNode node3 = new WorkflowNode(new ConsoleLogTask("Hello Workflow!"));
+        WorkflowNode node3 = new WorkflowNode(new MockTask(0.5f));
         WorkflowNode node2 = new WorkflowNode
         (
             new FileLogTask("Hello!", "WorkflowLog"),

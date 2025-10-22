@@ -4,7 +4,7 @@ import com.potik.Interfaces.IWorkflowElement;
 
 public class WorkflowInstance
 {
-    private IWorkflowElement head;
+    private final IWorkflowElement head;
     private IWorkflowElement tail;
 
     public WorkflowInstance(IWorkflowElement headNode)
@@ -22,16 +22,28 @@ public class WorkflowInstance
     public void Run()
     {
         IWorkflowElement currentElement = this.head;
+        int elementNumber = 1;
 
-        do
+        workflowLoop: do
         {
             switch (currentElement.Status())
             {
                 case INIT -> currentElement.Run();
-                case SUCCESS -> currentElement = currentElement.GetNext();
-                case FAILURE -> throw new RuntimeException("Workflow element has failed");
+                case SUCCESS -> {
+                    currentElement = currentElement.GetNext();
+                    elementNumber++;
+                }
+                case FAILURE -> {
+                    FailAndStop(currentElement, elementNumber);
+                    break workflowLoop;
+                }
             }
         }
         while (currentElement != null);
+    }
+
+    private void FailAndStop(IWorkflowElement currentElement, int elementNumber)
+    {
+        System.out.println("Task " + elementNumber + ": " + currentElement.GetTaskName() + " has failed");
     }
 }
