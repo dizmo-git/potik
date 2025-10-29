@@ -6,7 +6,7 @@ import com.potik.Interfaces.IExecutable;
 public class MockFailureTask implements IExecutable
 {
     @Override
-    public Status Execute()
+    public Status execute()
     {
         return Status.FAILURE;
     }

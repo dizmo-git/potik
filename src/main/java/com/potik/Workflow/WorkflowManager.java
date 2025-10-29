@@ -7,13 +7,13 @@ public class WorkflowManager
 {
     private final Map<String, WorkflowInstance> workflows = new HashMap<>();
 
-    public void AddWorkflow(String name, WorkflowInstance workflow)
+    public void addWorkflow(String name, WorkflowInstance workflow)
     {
         workflows.put(name, workflow);
     }
 
-    public void RunWorkflow(String name)
+    public void runWorkflow(String name)
     {
-        workflows.get(name).Run();
+        workflows.get(name).run();
     }
 }

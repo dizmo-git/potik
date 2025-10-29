@@ -37,7 +37,7 @@ public class Main
 
         //Create and run Workflow
         WorkflowManager manager = new WorkflowManager();
-        manager.AddWorkflow("work", new WorkflowInstance(new WorkflowSequence(node1)));
-        manager.RunWorkflow("work");
+        manager.addWorkflow("work", new WorkflowInstance(new WorkflowSequence(node1)));
+        manager.runWorkflow("work");
     }
 }

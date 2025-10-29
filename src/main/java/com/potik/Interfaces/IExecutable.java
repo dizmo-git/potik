@@ -4,5 +4,5 @@ import com.potik.Enums.Status;
 
 public interface IExecutable
 {
-    public Status Execute();
+    public Status execute();
 }

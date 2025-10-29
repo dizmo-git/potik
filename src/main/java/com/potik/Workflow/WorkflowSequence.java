@@ -1,6 +1,5 @@
 package com.potik.Workflow;
 
-import com.potik.Enums.Status;
 import com.potik.Interfaces.AbstractWorkflowElement;
 
 public class WorkflowSequence extends AbstractWorkflowElement
@@ -17,32 +16,32 @@ public class WorkflowSequence extends AbstractWorkflowElement
 
     public void AddNode(AbstractWorkflowElement node)
     {
-        this.tail.SetNext(node);
+        this.tail.setNext(node);
         this.tail = node;
     }
 
     @Override
-    public String GetName()
+    public String getName()
     {
         return "Sequence";
     }
 
-    public void Run()
+    public void run()
     {
         AbstractWorkflowElement currentElement = this.head;
         int elementNumber = 1;
 
         workflowLoop: do
         {
-            switch (currentElement.GetStatus())
+            switch (currentElement.getStatus())
             {
-                case INIT -> currentElement.Run();
+                case INIT -> currentElement.run();
                 case SUCCESS -> {
-                    currentElement = currentElement.GetNext();
+                    currentElement = currentElement.getNext();
                     elementNumber++;
                 }
                 case FAILURE -> {
-                    FailAndStop(currentElement, elementNumber);
+                    failAndStop(currentElement, elementNumber);
                     break workflowLoop;
                 }
             }
@@ -50,18 +49,18 @@ public class WorkflowSequence extends AbstractWorkflowElement
         while (currentElement != null);
     }
 
-    private void FailAndStop(AbstractWorkflowElement currentElement, int elementNumber)
+    private void failAndStop(AbstractWorkflowElement currentElement, int elementNumber)
     {
-        System.out.println("Element " + elementNumber + ": " + currentElement.GetName() + " has failed");
+        System.out.println("Element " + elementNumber + ": " + currentElement.getName() + " has failed");
     }
 
     @Override
-    public AbstractWorkflowElement GetNext() {
+    public AbstractWorkflowElement getNext() {
         return null;
     }
 
     @Override
-    public void SetNext(AbstractWorkflowElement next) {
+    public void setNext(AbstractWorkflowElement next) {
 
     }
 }

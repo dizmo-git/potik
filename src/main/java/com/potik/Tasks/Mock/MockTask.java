@@ -13,7 +13,7 @@ public class MockTask implements IExecutable
     }
 
     @Override
-    public Status Execute()
+    public Status execute()
     {
         return Math.random() <= successProbability ? Status.SUCCESS : Status.FAILURE;
     }

@@ -1,6 +1,5 @@
 package com.potik.Workflow;
 
-import com.potik.Enums.Status;
 import com.potik.Interfaces.IExecutable;
 import com.potik.Interfaces.AbstractWorkflowElement;
 
@@ -20,23 +19,23 @@ public class WorkflowNode extends AbstractWorkflowElement
         this.task = task;
     }
 
-    public String GetName()
+    public String getName()
     {
         String taskName = task.getClass().getSimpleName();
         return "Node(" + taskName + ")";
     }
 
-    public void Run()
+    public void run()
     {
-        this.status = this.task.Execute();
+        this.status = this.task.execute();
     }
 
-    public AbstractWorkflowElement GetNext()
+    public AbstractWorkflowElement getNext()
     {
         return next;
     }
 
-    public void SetNext(AbstractWorkflowElement next)
+    public void setNext(AbstractWorkflowElement next)
     {
         this.next = next;
     }

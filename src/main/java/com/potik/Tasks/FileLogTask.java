@@ -22,7 +22,7 @@ public class FileLogTask implements IExecutable
     }
 
     @Override
-    public Status Execute()
+    public Status execute()
     {
         try
         {
@@ -30,11 +30,11 @@ public class FileLogTask implements IExecutable
 
             if (fileName == null)
             {
-                logger.SessionLog(message);
+                logger.sessionLog(message);
             }
             else
             {
-                logger.LogInFile(message, fileName);
+                logger.logInFile(message, fileName);
             }
 
             return Status.SUCCESS;

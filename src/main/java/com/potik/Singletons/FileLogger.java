@@ -14,18 +14,18 @@ public class FileLogger extends BaseSingleton<FileLogger>
     public FileLogger()
     {
         super();
-        this.logDir = GetLogDirectory();
-        this.sessionLogFile = logDir.resolve(GetSessionLogFileName());
-        EnsureLogFileExists();
+        this.logDir = getLogDirectory();
+        this.sessionLogFile = logDir.resolve(getSessionLogFileName());
+        ensureLogFileExists();
     }
 
-    private String GetSessionLogFileName()
+    private String getSessionLogFileName()
     {
         String dateAndTime = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
         return "session-log-" + dateAndTime + ".txt";
     }
 
-    private Path GetLogDirectory()
+    private Path getLogDirectory()
     {
         String localAppData = System.getenv("LOCALAPPDATA");
         if (localAppData == null)
@@ -45,7 +45,7 @@ public class FileLogger extends BaseSingleton<FileLogger>
         return logDir;
     }
 
-    private void EnsureLogFileExists()
+    private void ensureLogFileExists()
     {
         try
         {
@@ -60,7 +60,7 @@ public class FileLogger extends BaseSingleton<FileLogger>
         }
     }
 
-    public void SessionLog(String message)
+    public void sessionLog(String message)
     {
         try
         {
@@ -73,7 +73,7 @@ public class FileLogger extends BaseSingleton<FileLogger>
         }
     }
 
-    public void LogInFile(String message, String fileName)
+    public void logInFile(String message, String fileName)
     {
         fileName = fileName + ".txt";
         Path file = logDir.resolve(fileName);

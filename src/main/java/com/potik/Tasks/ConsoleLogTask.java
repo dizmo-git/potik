@@ -13,7 +13,7 @@ public class ConsoleLogTask implements IExecutable
     }
 
     @Override
-    public Status Execute()
+    public Status execute()
     {
         try
         {
