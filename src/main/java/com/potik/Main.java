@@ -1,13 +1,11 @@
 package com.potik;
 
 import com.potik.Singletons.FileLogger;
+import com.potik.Tasks.ConsoleLogTask;
 import com.potik.Tasks.FileLogTask;
 import com.potik.Tasks.Mock.MockTask;
 import com.potik.Tasks.SleepTask;
-import com.potik.Workflow.WorkflowInstance;
-import com.potik.Workflow.WorkflowManager;
-import com.potik.Workflow.WorkflowNode;
-import com.potik.Workflow.WorkflowSequence;
+import com.potik.Workflow.*;
 
 public class Main
 {
@@ -16,24 +14,33 @@ public class Main
         //Instantiate singletons
         FileLogger logger = new FileLogger();
 
+        WorkflowNode n1_3 = new WorkflowNode(new ConsoleLogTask("Tr1: 3"));
+        WorkflowNode n1_2 = new WorkflowNode(new ConsoleLogTask("Tr1: 2"), n1_3);
+        WorkflowNode n1_1 = new WorkflowNode(new ConsoleLogTask("Tr1: 1"), n1_2);
+        WorkflowSequence sequence1 = new WorkflowSequence(n1_1);
+
+        WorkflowNode n2_3 = new WorkflowNode(new ConsoleLogTask("Tr2: 3"));
+        WorkflowNode n2_2 = new WorkflowNode(new ConsoleLogTask("Tr2: 2"), n2_3);
+        WorkflowNode n2_1 = new WorkflowNode(new ConsoleLogTask("Tr2: 1"), n2_2);
+        WorkflowSequence sequence2 = new WorkflowSequence(n2_1);
+
         //Create nodes and tasks for them
-        //WorkflowNode node3 = new WorkflowNode(new ConsoleLogTask("Hello Workflow!"));
-        WorkflowNode node4 = new WorkflowNode(new MockTask(0.5f));
-        WorkflowNode node3 = new WorkflowNode
-        (
-            new SleepTask(3),
-            node4
-        );
         WorkflowNode node2 = new WorkflowNode
         (
-            new FileLogTask("Hello!", "WorkflowLog"),
-            node3
+            new ConsoleLogTask("WORKFLOW FINISH")
+        );
+        WorkflowSet set = new WorkflowSet
+        (
+            new WorkflowSequence(sequence1),
+            new WorkflowSequence(sequence2),
+            node2
         );
         WorkflowNode node1 = new WorkflowNode
         (
-                new FileLogTask("Yo!"),
-                node2
+            new ConsoleLogTask("WORKFLOW START"),
+            set
         );
+
 
         //Create and run Workflow
         WorkflowManager manager = new WorkflowManager();

@@ -6,5 +6,4 @@ public enum Status
     SUCCESS,
     FAILURE,
     RUNNING,
-    WAITING,
 }

@@ -17,6 +17,9 @@ public class ConsoleLogTask implements IExecutable
     {
         try
         {
+            //To better showcase threading
+            Thread.sleep(1000);
+
             System.out.println(message);
             return Status.SUCCESS;
         }

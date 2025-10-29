@@ -1,5 +1,6 @@
 package com.potik.Workflow;
 
+import com.potik.Enums.Status;
 import com.potik.Interfaces.AbstractWorkflowElement;
 
 public class WorkflowSequence extends AbstractWorkflowElement
@@ -44,23 +45,18 @@ public class WorkflowSequence extends AbstractWorkflowElement
                     failAndStop(currentElement, elementNumber);
                     break workflowLoop;
                 }
+                case RUNNING -> {
+                    continue;
+                }
             }
         }
         while (currentElement != null);
+
+        status = Status.SUCCESS;
     }
 
     private void failAndStop(AbstractWorkflowElement currentElement, int elementNumber)
     {
         System.out.println("Element " + elementNumber + ": " + currentElement.getName() + " has failed");
-    }
-
-    @Override
-    public AbstractWorkflowElement getNext() {
-        return null;
-    }
-
-    @Override
-    public void setNext(AbstractWorkflowElement next) {
-
     }
 }

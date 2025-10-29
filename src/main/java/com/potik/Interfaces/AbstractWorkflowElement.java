@@ -4,7 +4,7 @@ import com.potik.Enums.Status;
 
 public abstract class AbstractWorkflowElement implements Runnable, IChainElement<AbstractWorkflowElement>
 {
-    protected AbstractWorkflowElement next;
+    protected AbstractWorkflowElement next = null;
     protected Status status = Status.INIT;
 
     public abstract String getName();
@@ -19,4 +19,15 @@ public abstract class AbstractWorkflowElement implements Runnable, IChainElement
     {
         return status;
     }
+
+    public AbstractWorkflowElement getNext()
+    {
+        return next;
+    }
+
+    public void setNext(AbstractWorkflowElement next)
+    {
+        this.next = next;
+    }
+
 }

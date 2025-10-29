@@ -29,14 +29,4 @@ public class WorkflowNode extends AbstractWorkflowElement
     {
         this.status = this.task.execute();
     }
-
-    public AbstractWorkflowElement getNext()
-    {
-        return next;
-    }
-
-    public void setNext(AbstractWorkflowElement next)
-    {
-        this.next = next;
-    }
 }
