@@ -7,6 +7,7 @@ import com.potik.Tasks.SleepTask;
 import com.potik.Workflow.WorkflowInstance;
 import com.potik.Workflow.WorkflowManager;
 import com.potik.Workflow.WorkflowNode;
+import com.potik.Workflow.WorkflowSequence;
 
 public class Main
 {
@@ -36,7 +37,7 @@ public class Main
 
         //Create and run Workflow
         WorkflowManager manager = new WorkflowManager();
-        manager.AddWorkflow("work", new WorkflowInstance(node1));
+        manager.AddWorkflow("work", new WorkflowInstance(new WorkflowSequence(node1)));
         manager.RunWorkflow("work");
     }
 }
