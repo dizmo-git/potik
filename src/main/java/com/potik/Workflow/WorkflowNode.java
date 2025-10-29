@@ -51,14 +51,14 @@ public class WorkflowNode implements IWorkflowElement
     }
 
     @Override
-    public String GetTaskName()
-    {
-        return task.getClass().getSimpleName();
-    }
-
-    @Override
     public Status Status()
     {
         return this.status;
+    }
+
+    public String GetName()
+    {
+        String taskName = task.getClass().getSimpleName();
+        return "Node(" + taskName + ")";
     }
 }

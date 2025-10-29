@@ -1,19 +1,12 @@
 package com.potik;
 
-import com.potik.Interfaces.IExecutable;
 import com.potik.Singletons.FileLogger;
-import com.potik.Tasks.ConsoleLogTask;
 import com.potik.Tasks.FileLogTask;
-import com.potik.Tasks.Mock.MockFailureTask;
-import com.potik.Tasks.Mock.MockSuccessTask;
 import com.potik.Tasks.Mock.MockTask;
 import com.potik.Tasks.SleepTask;
 import com.potik.Workflow.WorkflowInstance;
 import com.potik.Workflow.WorkflowManager;
 import com.potik.Workflow.WorkflowNode;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main
 {

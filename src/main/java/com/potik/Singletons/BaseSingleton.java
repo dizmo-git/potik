@@ -1,6 +1,6 @@
 package com.potik.Singletons;
 
-public class BaseSingleton<T>
+public abstract class BaseSingleton<T>
 {
     private static Object instance;
 

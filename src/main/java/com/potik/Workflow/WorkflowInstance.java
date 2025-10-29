@@ -44,6 +44,6 @@ public class WorkflowInstance
 
     private void FailAndStop(IWorkflowElement currentElement, int elementNumber)
     {
-        System.out.println("Task " + elementNumber + ": " + currentElement.GetTaskName() + " has failed");
+        System.out.println("Element " + elementNumber + ": " + currentElement.GetName() + " has failed");
     }
 }

@@ -2,11 +2,9 @@ package com.potik.Interfaces;
 
 import com.potik.Enums.Status;
 
-public interface IWorkflowElement
+public interface IWorkflowElement extends IChainElement<IWorkflowElement>
 {
     public Status Status();
-    public IWorkflowElement GetNext();
-    public String GetTaskName();
-    public void SetNext(IWorkflowElement next);
+    public String GetName();
     public void Run();
 }
