@@ -2,63 +2,42 @@ package com.potik.Workflow;
 
 import com.potik.Enums.Status;
 import com.potik.Interfaces.IExecutable;
-import com.potik.Interfaces.IWorkflowElement;
+import com.potik.Interfaces.AbstractWorkflowElement;
 
-public class WorkflowNode implements IWorkflowElement
+public class WorkflowNode extends AbstractWorkflowElement
 {
-    private Status status = Status.INIT;
-    private IExecutable task;
-    private IWorkflowElement next;
+    private final IExecutable task;
 
-    public WorkflowNode(IExecutable task, IWorkflowElement next)
+    public WorkflowNode(IExecutable task, AbstractWorkflowElement next)
     {
+        super(next);
         this.task = task;
-        this.next = next;
     }
 
     public WorkflowNode(IExecutable task)
     {
+        super(null);
         this.task = task;
-    }
-
-    public WorkflowNode()
-    {
-        this.status = null;
-        this.next = null;
-    }
-
-    public void SetTask(IExecutable task)
-    {
-        this.task = task;
-    }
-
-    @Override
-    public void SetNext(IWorkflowElement next)
-    {
-        this.next = next;
-    }
-
-    @Override
-    public void Run()
-    {
-        this.status = this.task.Execute();
-    }
-
-    @Override
-    public IWorkflowElement GetNext()
-    {
-        return this.next;
-    }
-
-    @Override
-    public Status Status()
-    {
-        return this.status;
     }
 
     public String GetName()
     {
         String taskName = task.getClass().getSimpleName();
         return "Node(" + taskName + ")";
+    }
+
+    public void Run()
+    {
+        this.status = this.task.Execute();
+    }
+
+    public AbstractWorkflowElement GetNext()
+    {
+        return next;
+    }
+
+    public void SetNext(AbstractWorkflowElement next)
+    {
+        this.next = next;
     }
 }

@@ -1,19 +1,19 @@
 package com.potik.Workflow;
 
-import com.potik.Interfaces.IWorkflowElement;
+import com.potik.Interfaces.AbstractWorkflowElement;
 
 public class WorkflowInstance
 {
-    private final IWorkflowElement head;
-    private IWorkflowElement tail;
+    private final AbstractWorkflowElement head;
+    private AbstractWorkflowElement tail;
 
-    public WorkflowInstance(IWorkflowElement headNode)
+    public WorkflowInstance(AbstractWorkflowElement headNode)
     {
         this.head = headNode;
         this.tail = headNode;
     }
 
-    public void AddNode(IWorkflowElement node)
+    public void AddNode(AbstractWorkflowElement node)
     {
         this.tail.SetNext(node);
         this.tail = node;
@@ -21,12 +21,12 @@ public class WorkflowInstance
 
     public void Run()
     {
-        IWorkflowElement currentElement = this.head;
+        AbstractWorkflowElement currentElement = this.head;
         int elementNumber = 1;
 
         workflowLoop: do
         {
-            switch (currentElement.Status())
+            switch (currentElement.GetStatus())
             {
                 case INIT -> currentElement.Run();
                 case SUCCESS -> {
@@ -42,7 +42,7 @@ public class WorkflowInstance
         while (currentElement != null);
     }
 
-    private void FailAndStop(IWorkflowElement currentElement, int elementNumber)
+    private void FailAndStop(AbstractWorkflowElement currentElement, int elementNumber)
     {
         System.out.println("Element " + elementNumber + ": " + currentElement.GetName() + " has failed");
     }
